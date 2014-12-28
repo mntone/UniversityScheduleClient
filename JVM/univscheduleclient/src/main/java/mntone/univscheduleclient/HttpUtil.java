@@ -50,7 +50,7 @@ class HttpUtil
 				}
 				if( inputStreamReader != null )
 				{
-					reader.close();
+					inputStreamReader.close();
 				}
 			}
 
