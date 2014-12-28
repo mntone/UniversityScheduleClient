@@ -1,0 +1,114 @@
+﻿<Window
+	x:Class="Mntone.UniversityScheduleClient.Demo.Views.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+	xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+	xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+	xmlns:local="clr-namespace:Mntone.UniversityScheduleClient.Demo.ViewModels"
+	Title="UniversityScheduleClient.Demo"
+	Height="350"
+	Width="525"
+	FontFamily="Segoe UI">
+	<Window.DataContext>
+		<local:MainWindowViewModel />
+	</Window.DataContext>
+	<i:Interaction.Triggers>
+		<i:EventTrigger
+			EventName="ContentRendered">
+			<l:LivetCallMethodAction
+				MethodTarget="{Binding}"
+				MethodName="Initialize" />
+		</i:EventTrigger>
+		<i:EventTrigger
+			EventName="Closed">
+			<l:DataContextDisposeAction />
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition
+				Width="1*" />
+			<ColumnDefinition
+				Width="2*" />
+			<ColumnDefinition
+				Width="2*" />
+		</Grid.ColumnDefinitions>
+
+		<ListView
+			DisplayMemberPath="Names.Local"
+			ItemsSource="{Binding Universties}"
+			SelectedItem="{Binding SelectedUniversity}" />
+		<ListView
+			Grid.Column="1"
+			DisplayMemberPath="Subject"
+			ItemsSource="{Binding Classes}"
+			SelectedItem="{Binding SelectedClass}" />
+		<Grid
+			Grid.Column="2"
+			DataContext="{Binding SelectedClass}">
+			<Grid.RowDefinitions>
+				<RowDefinition
+					Height="Auto" />
+				<RowDefinition
+					Height="Auto" />
+				<RowDefinition
+					Height="Auto" />
+				<RowDefinition
+					Height="Auto" />
+				<RowDefinition
+					Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="1*" />
+				<ColumnDefinition
+					Width="2*" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock
+				Text="授業名: "
+				FontWeight="Bold" />
+			<TextBlock
+				Grid.Column="1"
+				Text="{Binding Subject}" />
+
+			<TextBlock
+				Grid.Row="1"
+				Text="キャンパス: "
+				FontWeight="Bold" />
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="1"
+				Text="{Binding CampusName}" />
+
+			<TextBlock
+				Grid.Row="2"
+				Text="講師: "
+				FontWeight="Bold" />
+			<TextBlock
+				Grid.Row="2"
+				Grid.Column="1"
+				Text="{Binding Lecturer}" />
+
+			<TextBlock
+				Grid.Row="3"
+				Text="学科: "
+				FontWeight="Bold" />
+			<TextBlock
+				Grid.Row="3"
+				Grid.Column="1"
+				Text="{Binding Department}"/>
+
+			<TextBlock
+				Grid.Row="4"
+				Text="説明: "
+				FontWeight="Bold" />
+			<TextBlock
+				Grid.Row="4"
+				Grid.Column="1"
+				Text="{Binding Note}"/>
+		</Grid>
+	</Grid>
+</Window>

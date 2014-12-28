@@ -1,0 +1,23 @@
+apply plugin: 'java'
+
+defaultTasks 'jar'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+def jdkVersion = '1.6'
+sourceCompatibility = jdkVersion
+targetCompatibility = jdkVersion
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.json:json:20141113'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'University Class Schedule Client', 'Implementation-Version': 0.9
+    }
+}
