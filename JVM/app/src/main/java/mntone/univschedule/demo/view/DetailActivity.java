@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import mntone.univscheduleclient.Class;
+import mntone.univschedule.core.Class;
 import mntone.univschedule.demo.R;
 import mntone.univschedule.demo.core.UnivScheduleAppContext;
 

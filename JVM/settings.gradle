@@ -1,1 +1,1 @@
-include ':app', ':univscheduleclient'
+include ':app', ':univschedule.core', ':univschedule.client'

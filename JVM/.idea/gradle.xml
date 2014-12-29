@@ -10,7 +10,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/univscheduleclient" />
+            <option value="$PROJECT_DIR$/univschedule.client" />
+            <option value="$PROJECT_DIR$/univschedule.core" />
           </set>
         </option>
       </GradleProjectSettings>

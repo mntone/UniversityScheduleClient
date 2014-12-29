@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/JVM.iml" filepath="$PROJECT_DIR$/JVM.iml" />
       <module fileurl="file://$PROJECT_DIR$/UnivsClassSchedule.iml" filepath="$PROJECT_DIR$/UnivsClassSchedule.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/univscheduleclient/univscheduleclient.iml" filepath="$PROJECT_DIR$/univscheduleclient/univscheduleclient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/univschedule.client/univschedule.client.iml" filepath="$PROJECT_DIR$/univschedule.client/univschedule.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/univschedule.core/univschedule.core.iml" filepath="$PROJECT_DIR$/univschedule.core/univschedule.core.iml" />
     </modules>
   </component>
 </project>

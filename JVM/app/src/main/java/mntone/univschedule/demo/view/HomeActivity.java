@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import mntone.univscheduleclient.*;
-import mntone.univscheduleclient.Class;
+import mntone.univschedule.core.*;
+import mntone.univschedule.core.Class;
 import mntone.univschedule.demo.R;
 import mntone.univschedule.demo.core.UnivScheduleAppContext;
 

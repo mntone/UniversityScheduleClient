@@ -5,7 +5,8 @@ import org.jdeferred.android.AndroidDeferredManager;
 
 import java.util.HashMap;
 
-import mntone.univscheduleclient.*;
+import mntone.univschedule.core.*;
+import mntone.univschedule.client.UniversityScheduleClient;
 
 public final class UnivScheduleAppContext
 {
