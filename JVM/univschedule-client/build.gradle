@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: '../univschedule.core/build/libs')
+    compile fileTree(include: ['*.jar'], dir: '../univschedule-core/build/libs')
     compile 'org.json:json:20141113'
 }
 

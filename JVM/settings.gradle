@@ -1,1 +1,2 @@
-include ':app', ':univschedule.core', ':univschedule.client'
+include ':app', ':univschedule-core', ':univschedule.client', ':univschedule-client'
+project(':univschedule.client').projectDir = new File('univschedule-client')

@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="GRADLE_PROJECT_PATH" value=":univschedule.core" />
+        <option name="GRADLE_PROJECT_PATH" value=":univschedule-client" />
       </configuration>
     </facet>
     <facet type="java-gradle" name="Java-Gradle">
@@ -27,6 +27,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="json-20141113" level="project" />
+    <orderEntry type="library" exported="" name="univschedule-core" level="project" />
   </component>
 </module>
 
