@@ -14,17 +14,28 @@ namespace Mntone.UniversitySchedule.Client.Internal
 				.SendAsync( new HttpRequestMessage( HttpMethod.Get, uri ) )
 				.ContinueWith( prevTask =>
 					{
-						var result = prevTask.Result;
-						if( result.StatusCode == HttpStatusCode.OK )
+						try
 						{
-							var header = result.Headers;
-							return result.Content.ReadAsStringAsync().ContinueWith( prevTask2 => Tuple.Create( header, prevTask2.Result ) );
+							var result = prevTask.Result;
+							if( result.StatusCode == HttpStatusCode.OK )
+							{
+								var header = result.Headers;
+								return result.Content.ReadAsStringAsync().ContinueWith( prevTask2 => Tuple.Create( header, prevTask2.Result ) );
+							}
+							else if( result.StatusCode == HttpStatusCode.NotModified )
+							{
+								throw new UniversityScheduleException( UniversityScheduleExceptionReason.NOT_MODIFIED );
+							}
+							throw new UniversityScheduleException( ( int )result.StatusCode );
 						}
-						else if( result.StatusCode == HttpStatusCode.NotModified )
+						catch( AggregateException ex )
 						{
-							throw new UniversityScheduleException( UniversityScheduleExceptionReason.NOT_MODIFIED );
+							if( ex.InnerException is TaskCanceledException )
+							{
+								throw new UniversityScheduleException( UniversityScheduleExceptionReason.WEB_TIMEOUT );
+							}
+							throw;
 						}
-						throw new UniversityScheduleException( ( int )result.StatusCode );
 					} )
 				.Unwrap();
 		}

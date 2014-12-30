@@ -13,7 +13,7 @@ namespace Mntone.UniversitySchedule.Client.Internal
 		{
 			return context
 				.GetStringWithHeaderProcessingAsync( url )
-				.ContinueWith( prevTask => ParseData( prevTask.Result ) );
+				.ContinueWith( prevTask => ParseData( prevTask.Result ), TaskContinuationOptions.OnlyOnRanToCompletion );
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace Mntone.UniversitySchedule.Client.Internal
 
 		public static Task<string> ProcessHeaderAsync( this Task<Tuple<HttpResponseHeaders, string>> prevTask, UniversityScheduleClient context )
 		{
-			return prevTask.ContinueWith( p => p.Result.Item2 );
+			return prevTask.ContinueWith( p => p.Result.Item2, TaskContinuationOptions.OnlyOnRanToCompletion );
 		}
 	}
 }

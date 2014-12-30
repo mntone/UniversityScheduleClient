@@ -7,5 +7,6 @@ namespace Mntone.UniversitySchedule.Client
 		NOT_MODIFIED,
 		WEB_EXCEPTION,
 		PARSE_FAILED,
+		WEB_TIMEOUT,
 	}
 }
