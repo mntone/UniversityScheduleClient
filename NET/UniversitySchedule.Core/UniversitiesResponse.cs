@@ -16,10 +16,12 @@ namespace Mntone.UniversitySchedule.Core
 		/// </summary>
 		/// <param name="message">Error message</param>
 		/// <param name="universities">Array of <see cref="University"/></param>
-		internal UniversitiesResponse( string message, University[] universities )
+		/// <param name="modifiedAt">Last modified</param>
+		internal UniversitiesResponse( string message, University[] universities, DateTime modifiedAt )
 		{
 			this.Message = message;
 			this.Universities = universities;
+			this.ModifiedAt = modifiedAt;
 		}
 
 		/// <summary>

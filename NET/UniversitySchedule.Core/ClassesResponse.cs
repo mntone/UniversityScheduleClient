@@ -15,11 +15,13 @@ namespace Mntone.UniversitySchedule.Core
 		/// longitude
 		/// </summary>
 		/// <param name="message">Message</param>
-		/// <param name="classes">Classes</param>
-		internal ClassesResponse( string message, Class[] classes )
+		/// <param name="classes">Array of <see cref="Class"/></param>
+		/// <param name="modifiedAt">Last modified</param>
+		internal ClassesResponse( string message, Class[] classes, DateTime modifiedAt )
 		{
 			this.Message = message;
 			this.Classes = classes;
+			this.ModifiedAt = modifiedAt;
 		}
 
 		/// <summary>
