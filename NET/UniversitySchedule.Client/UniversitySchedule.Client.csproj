@@ -46,6 +46,7 @@
     <Compile Include="Internal\BaseClient.cs" />
     <Compile Include="Internal\HttpClientExtensions.cs" />
     <Compile Include="Internal\JsonSerializerExtensions.cs" />
+    <Compile Include="Internal\UniversitiesClient.cs" />
     <Compile Include="Internal\UniversityScheduleHeaderProcessingExtensions.cs" />
     <Compile Include="UniversityScheduleException.cs" />
     <Compile Include="UniversityScheduleExceptionReason.cs" />

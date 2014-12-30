@@ -4,15 +4,19 @@ namespace Mntone.UniversitySchedule.Client.Internal
 {
 	internal class BaseClient<T>
 	{
-		private static T ParseData( string data )
+		private T ParseData( string data )
 		{
 			return JsonSerializerExtensions.Load<T>( data );
 		}
 
-		public static Task<T> GetAsync( UniversityScheduleClient context, string url )
+		protected virtual Task<string> GetStringAsync( UniversityScheduleClient context, string url )
 		{
-			return context
-				.GetStringWithHeaderProcessingAsync( url )
+			return context.GetStringWithHeaderProcessingAsync( url );
+		}
+
+		public Task<T> GetAsync( UniversityScheduleClient context, string url )
+		{
+			return GetStringAsync( context, url )
 				.ContinueWith( prevTask => ParseData( prevTask.Result ), TaskContinuationOptions.OnlyOnRanToCompletion );
 		}
 	}

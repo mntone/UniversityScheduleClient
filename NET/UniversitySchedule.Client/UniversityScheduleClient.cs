@@ -13,6 +13,7 @@ namespace Mntone.UniversitySchedule.Client
 	public sealed class UniversityScheduleClient
 		: IDisposable
 	{
+		internal const string XUnivsLastModified = "X-UNIVS-LAST-MODIFIED";
 		internal const string DefaultUserAgent = "UniversityScheduleClient for .NET/0.9";
 
 		private HttpClientHandler _httpClientHandler = null;
@@ -25,6 +26,8 @@ namespace Mntone.UniversitySchedule.Client
 		public UniversityScheduleClient( string accessKey )
 		{
 			this._AccessKey = accessKey;
+			this.AdditionalUserAgent = null;
+			this.UniverstiesModifiedAt = DateTime.MinValue;
 		}
 
 		/// <summary>
@@ -52,7 +55,7 @@ namespace Mntone.UniversitySchedule.Client
 		public Task<UniversitiesResponse> GetUniversitiesAsync()
 		{
 			var url = string.Format( UniversityScheduleUrls.UNIVERSTIES_URL, this.AccessKey );
-			return BaseClient<UniversitiesResponse>.GetAsync( this, url );
+			return new UniversitiesClient().GetAsync( this, url );
 		}
 
 		/// <summary>
@@ -71,7 +74,7 @@ namespace Mntone.UniversitySchedule.Client
 		public Task<ClassesResponse> GetClassesAsync( string universityScreenName )
 		{
 			var url = string.Format( UniversityScheduleUrls.CANCELLATIONS_URL, this.AccessKey, universityScreenName );
-			return BaseClient<ClassesResponse>.GetAsync( this, url );
+			return new BaseClient<ClassesResponse>().GetAsync( this, url );
 		}
 
 		internal HttpClient GetClient()
@@ -84,8 +87,8 @@ namespace Mntone.UniversitySchedule.Client
 				this._httpClient = new HttpClient( this._httpClientHandler, false );
 				this._httpClient.DefaultRequestHeaders.Add(
 					"user-agent",
-					this._AdditionalUserAgent != null
-						? DefaultUserAgent + " (" + this._AdditionalUserAgent + ')'
+					this.AdditionalUserAgent != null
+						? DefaultUserAgent + " (" + this.AdditionalUserAgent + ')'
 						: DefaultUserAgent );
 				this._httpClient.Timeout = TimeSpan.FromSeconds( 5 );
 			}
@@ -104,11 +107,11 @@ namespace Mntone.UniversitySchedule.Client
 		/// <summary>
 		/// Additional user agent
 		/// </summary>
-		public string AdditionalUserAgent
-		{
-			get { return this._AdditionalUserAgent; }
-			set { this._AdditionalUserAgent = value; }
-		}
-		private string _AdditionalUserAgent = null;
+		public string AdditionalUserAgent { get; set; }
+
+		/// <summary>
+		/// Last modified of university list
+		/// </summary>
+		public DateTime UniverstiesModifiedAt { get; set; }
 	}
 }

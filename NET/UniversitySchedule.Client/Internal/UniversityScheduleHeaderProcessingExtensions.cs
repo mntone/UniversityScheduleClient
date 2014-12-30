@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -19,7 +20,18 @@ namespace Mntone.UniversitySchedule.Client.Internal
 
 		public static Task<string> ProcessHeaderAsync( this Task<Tuple<HttpResponseHeaders, string>> prevTask, UniversityScheduleClient context )
 		{
-			return prevTask.ContinueWith( p => p.Result.Item2, TaskContinuationOptions.OnlyOnRanToCompletion );
+			return prevTask.ContinueWith( p =>
+				{
+					var result = p.Result;
+
+					IEnumerable<string> xUnivsLastModifiedHeader;
+					if( result.Item1.TryGetValues( UniversityScheduleClient.XUnivsLastModified, out xUnivsLastModifiedHeader ) )
+					{
+						context.UniverstiesModifiedAt = DateTime.ParseExact( string.Join( " ", xUnivsLastModifiedHeader ), "R", null );
+					}
+
+					return p.Result.Item2;
+				}, TaskContinuationOptions.OnlyOnRanToCompletion );
 		}
 	}
 }
