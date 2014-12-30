@@ -36,5 +36,11 @@ namespace Mntone.UniversitySchedule.Core
 		/// </summary>
 		[DataMember( Name = "items", IsRequired = true )]
 		public University[] Universities { get; private set; }
+
+		/// <summary>
+		/// Last modified
+		/// </summary>
+		[DataMember( Name = "last_update", IsRequired = true )]
+		public DateTime ModifiedAt { get; private set; }
 	}
 }
