@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
@@ -55,7 +59,7 @@ class HttpUtil
 		String ret = null;
 		try
 		{
-			final String acceptEncoding = connection.getHeaderField( "Content-Encoding" );
+			final String acceptEncoding = connection.getContentEncoding();
 			final boolean isGzipped = "gzip".equals( acceptEncoding );
 			final boolean isDeflate = "deflate".equals( acceptEncoding );
 
@@ -126,5 +130,29 @@ class HttpUtil
 			throw new UniversityScheduleException( UniversityScheduleExceptionReason.PARSE_FAILED, ex );
 		}
 		return ret;
+	}
+
+	private static final Date DATE_MIN = new Date( 0 );
+	private static final SimpleDateFormat RFC1123_DATE_FORMAT = new SimpleDateFormat( "EEE, dd MMM yyyy hh:mm:ss zzz", Locale.US );
+
+	public static Date convertStringToDateWithRFC1123( String dateTime )
+	{
+		try
+		{
+			return RFC1123_DATE_FORMAT.parse( dateTime );
+		}
+		catch( ParseException ex )
+		{
+		}
+		return DATE_MIN;
+	}
+
+	public static void setUniversitiesModifiedAt( final UniversityScheduleClient client, final HttpURLConnection connection )
+	{
+		final String value = connection.getHeaderField( UniversityScheduleClient.X_UNIVS_LAST_MODIFIED );
+		if( value != null )
+		{
+			client.setUniverstiesModifiedAt( convertStringToDateWithRFC1123( value ) );
+		}
 	}
 }

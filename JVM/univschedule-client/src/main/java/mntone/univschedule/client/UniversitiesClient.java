@@ -24,6 +24,14 @@ class UniversitiesClient
 
 			if( connection.getResponseCode() == HttpURLConnection.HTTP_OK )
 			{
+				{
+					final String value = connection.getHeaderField( "last-modified" );
+					if( value != null )
+					{
+						context.setUniverstiesModifiedAt( HttpUtil.convertStringToDateWithRFC1123( value ) );
+					}
+				}
+
 				final String jsonText = HttpUtil.getString( connection );
 				final JSONTokener reader = new JSONTokener( jsonText );
 				final JSONObject root = new JSONObject( reader );

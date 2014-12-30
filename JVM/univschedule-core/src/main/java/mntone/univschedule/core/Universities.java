@@ -2,6 +2,8 @@ package mntone.univschedule.core;
 
 import org.json.JSONObject;
 
+import java.util.Date;
+
 /**
  * Universities
  */
@@ -12,6 +14,9 @@ public final class Universities
 	 */
 	public static class FriendUniversities
 	{
+		/**
+		 * Instantiates a new Friend universities.
+		 */
 		protected FriendUniversities()
 		{
 			if( !this.getClass().getName().startsWith( "mntone.univschedule.client." ) )
@@ -23,13 +28,14 @@ public final class Universities
 		/**
 		 * Create universities.
 		 *
-		 * @param message      the message
+		 * @param message the message
 		 * @param universities the array of the university
+		 * @param modifiedAt the last modified date time
 		 * @return the universities
 		 */
-		public Universities createUniversities( String message, University[] universities )
+		public Universities createUniversities( String message, University[] universities, Date modifiedAt )
 		{
-			return new Universities( message, universities );
+			return new Universities( message, universities, modifiedAt );
 		}
 
 		/**
@@ -46,17 +52,20 @@ public final class Universities
 
 	private final String mMessage;
 	private final University[] mUniversities;
+	private final Date mModifiedAt;
 
 	/**
 	 * Initialize a new Universities.
 	 *
-	 * @param message      the message
+	 * @param message the message
 	 * @param universities the array of the university
+	 * @param modifiedAt the last modified date time
 	 */
-	Universities( String message, University[] universities )
+	Universities( String message, University[] universities, Date modifiedAt )
 	{
 		this.mMessage = message;
 		this.mUniversities = universities;
+		this.mModifiedAt = modifiedAt;
 	}
 
 	/**
@@ -82,6 +91,7 @@ public final class Universities
 					return new University[size];
 				}
 			} );
+		this.mModifiedAt = JsonUtil.convertStringToDateWithISO8601( root.getString( "last_update" ) );
 	}
 
 	/**
@@ -102,5 +112,15 @@ public final class Universities
 	public University[] getUniversities()
 	{
 		return this.mUniversities;
+	}
+
+	/**
+	 * Get modified at.
+	 *
+	 * @return the last modified
+	 */
+	public Date getModifiedAt()
+	{
+		return this.mModifiedAt;
 	}
 }

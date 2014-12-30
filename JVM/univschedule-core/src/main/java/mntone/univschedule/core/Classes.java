@@ -2,6 +2,8 @@ package mntone.univschedule.core;
 
 import org.json.JSONObject;
 
+import java.util.Date;
+
 /**
  * Classes
  */
@@ -26,11 +28,12 @@ public final class Classes
 		 * @param message    the message
 		 * @param university the university
 		 * @param classes    the array of the class
+		 * @param modifiedAt the last modified date time
 		 * @return the classes
 		 */
-		public Classes createClasses( String message, University university, Class[] classes )
+		public Classes createClasses( String message, University university, Class[] classes, Date modifiedAt )
 		{
-			return new Classes( message, university, classes );
+			return new Classes( message, university, classes, modifiedAt );
 		}
 
 		/**
@@ -48,6 +51,7 @@ public final class Classes
 	private final String mMessage;
 	private final University mUniversity;
 	private final Class[] mClasses;
+	private final Date mModifiedAt;
 
 	/**
 	 * Initialize a new Classes.
@@ -55,12 +59,14 @@ public final class Classes
 	 * @param message    the message
 	 * @param university the university
 	 * @param classes    the array of the class
+	 * @param modifiedAt the last modified date time
 	 */
-	Classes( String message, University university, Class[] classes )
+	Classes( String message, University university, Class[] classes, Date modifiedAt )
 	{
 		this.mMessage = message;
 		this.mUniversity = university;
 		this.mClasses = classes;
+		this.mModifiedAt = modifiedAt;
 	}
 
 	/**
@@ -87,6 +93,7 @@ public final class Classes
 					return new Class[size];
 				}
 			} );
+		this.mModifiedAt = JsonUtil.convertStringToDateWithISO8601( root.getString( "last_update" ) );
 	}
 
 	/**
@@ -117,5 +124,15 @@ public final class Classes
 	public Class[] getClasses()
 	{
 		return this.mClasses;
+	}
+
+	/**
+	 * Get modified at.
+	 *
+	 * @return the last modified
+	 */
+	public Date getModifiedAt()
+	{
+		return this.mModifiedAt;
 	}
 }

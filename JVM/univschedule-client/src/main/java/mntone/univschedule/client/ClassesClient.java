@@ -25,6 +25,8 @@ class ClassesClient
 			final int statusCode = connection.getResponseCode();
 			if( statusCode == HttpURLConnection.HTTP_OK )
 			{
+				HttpUtil.setUniversitiesModifiedAt( context, connection );
+
 				final String jsonText = HttpUtil.getString( connection );
 				final JSONTokener reader = new JSONTokener( jsonText );
 				final JSONObject root = new JSONObject( reader );
