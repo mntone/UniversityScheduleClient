@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.zip.GZIPInputStream;
+import java.util.zip.Inflater;
+import java.util.zip.InflaterInputStream;
 
 class HttpUtil
 {
@@ -24,53 +26,100 @@ class HttpUtil
 		return connection;
 	}
 
+	private static String getString( InputStreamReader inputStreamReader ) throws IOException
+	{
+		final StringBuffer buffer = new StringBuffer();
+		BufferedReader reader = null;
+		try
+		{
+			reader = new BufferedReader( inputStreamReader );
+			String line = null;
+			do
+			{
+				line = reader.readLine();
+				buffer.append( line + "\n" );
+			} while( line != null );
+		}
+		finally
+		{
+			if( reader != null )
+			{
+				reader.close();
+			}
+		}
+		return buffer.toString();
+	}
+
 	public static String getString( HttpURLConnection connection ) throws UniversityScheduleException
 	{
 		String ret = null;
 		try
 		{
-			final boolean isGzipped = connection.getHeaderField( "Content-Encoding" ).equals( "gzip" );
-			final StringBuffer buffer = new StringBuffer();
+			final String acceptEncoding = connection.getHeaderField( "Content-Encoding" );
+			final boolean isGzipped = "gzip".equals( acceptEncoding );
+			final boolean isDeflate = "deflate".equals( acceptEncoding );
 
-			GZIPInputStream gzipStream = null;
-			InputStreamReader inputStreamReader = null;
-			BufferedReader reader = null;
-			try
+			if( isGzipped )
 			{
-				if( isGzipped )
+				GZIPInputStream gzipStream = null;
+				InputStreamReader inputStreamReader = null;
+				try
 				{
 					gzipStream = new GZIPInputStream( connection.getInputStream() );
 					inputStreamReader = new InputStreamReader( gzipStream );
+					ret = getString( inputStreamReader );
 				}
-				else
+				finally
+				{
+					if( inputStreamReader != null )
+					{
+						inputStreamReader.close();
+					}
+					if( gzipStream != null )
+					{
+						gzipStream.close();
+					}
+				}
+
+			}
+			else if( isDeflate )
+			{
+				InflaterInputStream inflaterStream = null;
+				InputStreamReader inputStreamReader = null;
+				try
+				{
+					inflaterStream = new InflaterInputStream( connection.getInputStream(), new Inflater( true ) );
+					inputStreamReader = new InputStreamReader( inflaterStream );
+					ret = getString( inputStreamReader );
+				}
+				finally
+				{
+					if( inputStreamReader != null )
+					{
+						inputStreamReader.close();
+					}
+					if( inflaterStream != null )
+					{
+						inflaterStream.close();
+					}
+				}
+			}
+			else
+			{
+				InputStreamReader inputStreamReader = null;
+				try
 				{
 					inputStreamReader = new InputStreamReader( connection.getInputStream() );
+					ret = getString( inputStreamReader );
 				}
-				reader = new BufferedReader( inputStreamReader );
-				String line = null;
-				do
+				finally
 				{
-					line = reader.readLine();
-					buffer.append( line + "\n" );
-				} while( line != null );
-			}
-			finally
-			{
-				if( reader != null )
-				{
-					reader.close();
-				}
-				if( inputStreamReader != null )
-				{
-					inputStreamReader.close();
-				}
-				if( gzipStream != null )
-				{
-					gzipStream.close();
+					if( inputStreamReader != null )
+					{
+						inputStreamReader.close();
+					}
 				}
 			}
-
-			ret = buffer.toString();
 		}
 		catch( IOException ex )
 		{
