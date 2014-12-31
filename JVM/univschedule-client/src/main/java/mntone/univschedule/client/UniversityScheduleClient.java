@@ -30,7 +30,7 @@ public final class UniversityScheduleClient
 	 *
 	 * @param accessKey the access key
 	 */
-	public UniversityScheduleClient( String accessKey )
+	public UniversityScheduleClient( final String accessKey )
 	{
 		this.mAccessKey = accessKey;
 	}
@@ -53,7 +53,7 @@ public final class UniversityScheduleClient
 	 * @return the classes
 	 * @throws UniversityScheduleException the UniversityClassScheduleException
 	 */
-	public Classes getClasses( University university ) throws UniversityScheduleException
+	public Classes getClasses( final University university ) throws UniversityScheduleException
 	{
 		return this.getClasses( university.getScreenName() );
 	}
@@ -65,7 +65,7 @@ public final class UniversityScheduleClient
 	 * @return the classes
 	 * @throws UniversityScheduleException the UniversityClassScheduleException
 	 */
-	public Classes getClasses( String universityScreenName ) throws UniversityScheduleException
+	public Classes getClasses( final String universityScreenName ) throws UniversityScheduleException
 	{
 		return ClassesClient.getClasses( this, universityScreenName );
 	}
@@ -95,7 +95,7 @@ public final class UniversityScheduleClient
 	 *
 	 * @param additionalUserAgent the additional user agent
 	 */
-	public void setAdditionalUserAgent( String additionalUserAgent )
+	public void setAdditionalUserAgent( final String additionalUserAgent )
 	{
 		this.mAdditionalUserAgent = additionalUserAgent;
 	}
@@ -115,7 +115,7 @@ public final class UniversityScheduleClient
 	 *
 	 * @param value the last modified of university list.
 	 */
-	public void setUniverstiesModifiedAt( Date value )
+	public void setUniverstiesModifiedAt( final Date value )
 	{
 		this.mUniverstiesModifiedAt = value;
 	}

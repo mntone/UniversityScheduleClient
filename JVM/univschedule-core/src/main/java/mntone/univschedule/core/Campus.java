@@ -20,7 +20,7 @@ public final class Campus
 	 * @param names the name
 	 * @param coordinates the coordinates
 	 */
-	Campus( int id, String screenName, Names names, Coordinates coordinates )
+	Campus( final int id, final String screenName, final Names names, final Coordinates coordinates )
 	{
 		this.mId = id;
 		this.mScreenName = screenName;
@@ -33,7 +33,7 @@ public final class Campus
 	 *
 	 * @param campus the json of campus
 	 */
-	Campus( JSONObject campus )
+	Campus( final JSONObject campus )
 	{
 		this.mId = campus.getInt( "id" );
 		this.mScreenName = campus.getString( "screen_name" );

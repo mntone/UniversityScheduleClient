@@ -11,7 +11,7 @@ import mntone.univschedule.core.Classes;
 
 class ClassesClient
 {
-	static Classes getClasses( UniversityScheduleClient context, String screenName ) throws UniversityScheduleException
+	static Classes getClasses( final UniversityScheduleClient context, final String screenName ) throws UniversityScheduleException
 	{
 		Classes classes = null;
 

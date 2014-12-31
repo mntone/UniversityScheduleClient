@@ -14,7 +14,7 @@ public final class UniversityScheduleException extends Exception
 	 *
 	 * @param reason the reason
 	 */
-	UniversityScheduleException( UniversityScheduleExceptionReason reason )
+	UniversityScheduleException( final UniversityScheduleExceptionReason reason )
 	{
 		this.mReason = reason;
 		this.mInnerException = null;
@@ -27,7 +27,7 @@ public final class UniversityScheduleException extends Exception
 	 * @param reason the reason
 	 * @param innerException the inner exception
 	 */
-	UniversityScheduleException( UniversityScheduleExceptionReason reason, Exception innerException )
+	UniversityScheduleException( final UniversityScheduleExceptionReason reason, final Exception innerException )
 	{
 		this.mReason = reason;
 		this.mInnerException = innerException;
@@ -39,7 +39,7 @@ public final class UniversityScheduleException extends Exception
 	 *
 	 * @param errorCode the error code
 	 */
-	UniversityScheduleException( int errorCode )
+	UniversityScheduleException( final int errorCode )
 	{
 		this.mReason = UniversityScheduleExceptionReason.WEB_EXCEPTION;
 		this.mInnerException = null;

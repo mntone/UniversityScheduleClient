@@ -61,7 +61,7 @@ public final class Classes
 	 * @param classes    the array of the class
 	 * @param modifiedAt the last modified date time
 	 */
-	Classes( String message, University university, Class[] classes, Date modifiedAt )
+	Classes( final String message, final University university, final Class[] classes, final Date modifiedAt )
 	{
 		this.mMessage = message;
 		this.mUniversity = university;
@@ -74,7 +74,7 @@ public final class Classes
 	 *
 	 * @param root the json of the root
 	 */
-	Classes( JSONObject root )
+	Classes( final JSONObject root )
 	{
 		this.mMessage = root.getString( "message" );
 		this.mUniversity = new University( root.getJSONObject( "university" ) );
@@ -82,13 +82,13 @@ public final class Classes
 			root.getJSONArray( "items" ), new JsonUtil.InstanceFactory<Class>()
 			{
 				@Override
-				public Class createInstance( JSONObject json )
+				public Class createInstance( final JSONObject json )
 				{
 					return new Class( json );
 				}
 
 				@Override
-				public Class[] createArray( int size )
+				public Class[] createArray( final int size )
 				{
 					return new Class[size];
 				}

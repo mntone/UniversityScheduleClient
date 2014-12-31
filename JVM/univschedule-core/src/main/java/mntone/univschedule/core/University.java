@@ -20,7 +20,7 @@ public final class University
 	 * @param names      the name
 	 * @param campuses   the campuses
 	 */
-	University( int id, String screenName, Names names, Campus[] campuses )
+	University( final int id, final String screenName, final Names names, final Campus[] campuses )
 	{
 		this.mId = id;
 		this.mScreenName = screenName;
@@ -33,7 +33,7 @@ public final class University
 	 *
 	 * @param university the json of university
 	 */
-	University( JSONObject university )
+	University( final JSONObject university )
 	{
 		this.mId = university.getInt( "id" );
 		this.mScreenName = university.getString( "screen_name" );
@@ -42,13 +42,13 @@ public final class University
 			university.optJSONArray( "campuses" ), new JsonUtil.InstanceFactory<Campus>()
 			{
 				@Override
-				public Campus createInstance( JSONObject json )
+				public Campus createInstance( final JSONObject json )
 				{
 					return new Campus( json );
 				}
 
 				@Override
-				public Campus[] createArray( int size )
+				public Campus[] createArray( final int size )
 				{
 					return new Campus[size];
 				}

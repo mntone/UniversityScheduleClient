@@ -16,7 +16,7 @@ public final class Period
 	 * @param from the from
 	 * @param to   the to
 	 */
-	Period( byte from, byte to )
+	Period( final byte from, final byte to )
 	{
 		this.mFrom = from;
 		this.mTo = to;
@@ -27,7 +27,7 @@ public final class Period
 	 *
 	 * @param period the period
 	 */
-	Period( JSONObject period )
+	Period( final JSONObject period )
 	{
 		this.mFrom = ( byte )period.getInt( "from" );
 		this.mTo = ( byte )period.getInt( "to" );

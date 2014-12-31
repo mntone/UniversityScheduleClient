@@ -32,7 +32,16 @@ public final class Class
 	 * @param grade      the grade
 	 * @param note       the note
 	 */
-	Class( String id, Date date, Period period, String campusName, String department, String subject, String lecturer, String grade, String note )
+	Class(
+		final String id,
+		final Date date,
+		final Period period,
+		final String campusName,
+		final String department,
+		final String subject,
+		final String lecturer,
+		final String grade,
+		final String note )
 	{
 		this.mId = id;
 		this.mDate = date;
@@ -50,7 +59,7 @@ public final class Class
 	 *
 	 * @param klass the json of class
 	 */
-	Class( JSONObject klass )
+	Class( final JSONObject klass )
 	{
 		this.mId = klass.getString( "hash" );
 		this.mDate = JsonUtil.convertStringToDateWithISO8601( klass.getString( "date" ) );

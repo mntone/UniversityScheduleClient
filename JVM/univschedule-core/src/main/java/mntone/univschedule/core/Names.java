@@ -18,7 +18,7 @@ public final class Names
 	 * @param englishUnitedStates the english united states
 	 * @param region              the region
 	 */
-	Names( String local, String englishUnitedStates, String region )
+	Names( final String local, final String englishUnitedStates, final String region )
 	{
 		this.mLocal = local;
 		this.mEnglishUnitedStates = englishUnitedStates;
@@ -30,7 +30,7 @@ public final class Names
 	 *
 	 * @param names the json of names
 	 */
-	Names( JSONObject names )
+	Names( final JSONObject names )
 	{
 		this.mLocal = names.getString( "local" );
 		this.mEnglishUnitedStates = names.getString( "en_us" );

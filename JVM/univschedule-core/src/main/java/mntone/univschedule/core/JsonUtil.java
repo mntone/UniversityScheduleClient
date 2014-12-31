@@ -19,7 +19,7 @@ class JsonUtil
 		T[] createArray( int size );
 	}
 
-	public static <T> T[] convertJsonArrayToArray( JSONArray items, InstanceFactory<T> factory )
+	public static <T> T[] convertJsonArrayToArray( final JSONArray items, final InstanceFactory<T> factory )
 	{
 		if( items == null )
 		{
@@ -47,25 +47,25 @@ class JsonUtil
 		ISO8601_DATE_FORMAT.setTimeZone( TimeZone.getTimeZone( "UTC" ) );
 	}
 
-	public static Date convertStringToDateTimeWithISO8601( String dateTime )
+	public static Date convertStringToDateTimeWithISO8601( final String dateTime )
 	{
 		try
 		{
 			return ISO8601_DATETIME_FORMAT.parse( dateTime );
 		}
-		catch( ParseException ex )
+		catch( final ParseException ignored )
 		{
 		}
 		return DATE_MIN;
 	}
 
-	public static Date convertStringToDateWithISO8601( String date )
+	public static Date convertStringToDateWithISO8601( final String date )
 	{
 		try
 		{
 			return ISO8601_DATE_FORMAT.parse( date );
 		}
-		catch( ParseException ex )
+		catch( final ParseException ignored )
 		{
 		}
 		return DATE_MIN;

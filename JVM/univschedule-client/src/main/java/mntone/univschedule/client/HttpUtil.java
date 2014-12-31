@@ -15,7 +15,7 @@ import java.util.zip.InflaterInputStream;
 
 class HttpUtil
 {
-	public static HttpURLConnection getConnection( UniversityScheduleClient context, URL url ) throws IOException
+	public static HttpURLConnection getConnection( final UniversityScheduleClient context, final URL url ) throws IOException
 	{
 		final HttpURLConnection connection = ( HttpURLConnection )url.openConnection();
 		connection.setRequestMethod( "GET" );
@@ -30,9 +30,9 @@ class HttpUtil
 		return connection;
 	}
 
-	private static String getString( InputStreamReader inputStreamReader ) throws IOException
+	private static String getString( final InputStreamReader inputStreamReader ) throws IOException
 	{
-		final StringBuffer buffer = new StringBuffer();
+		final StringBuilder buffer = new StringBuilder();
 		BufferedReader reader = null;
 		try
 		{
@@ -41,7 +41,7 @@ class HttpUtil
 			do
 			{
 				line = reader.readLine();
-				buffer.append( line + "\n" );
+				buffer.append( line ).append( "\n" );
 			} while( line != null );
 		}
 		finally
@@ -54,7 +54,7 @@ class HttpUtil
 		return buffer.toString();
 	}
 
-	public static String getString( HttpURLConnection connection ) throws UniversityScheduleException
+	public static String getString( final HttpURLConnection connection ) throws UniversityScheduleException
 	{
 		String ret = null;
 		try
@@ -125,7 +125,7 @@ class HttpUtil
 				}
 			}
 		}
-		catch( IOException ex )
+		catch( final IOException ex )
 		{
 			throw new UniversityScheduleException( UniversityScheduleExceptionReason.PARSE_FAILED, ex );
 		}
@@ -135,13 +135,13 @@ class HttpUtil
 	private static final Date DATE_MIN = new Date( 0 );
 	private static final SimpleDateFormat RFC1123_DATE_FORMAT = new SimpleDateFormat( "EEE, dd MMM yyyy hh:mm:ss zzz", Locale.US );
 
-	public static Date convertStringToDateWithRFC1123( String dateTime )
+	public static Date convertStringToDateWithRFC1123( final String dateTime )
 	{
 		try
 		{
 			return RFC1123_DATE_FORMAT.parse( dateTime );
 		}
-		catch( ParseException ex )
+		catch( final ParseException ex )
 		{
 		}
 		return DATE_MIN;

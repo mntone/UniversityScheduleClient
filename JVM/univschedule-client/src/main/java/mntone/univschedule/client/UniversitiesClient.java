@@ -11,7 +11,7 @@ import mntone.univschedule.core.Universities;
 
 class UniversitiesClient
 {
-	static Universities getUniversities( UniversityScheduleClient context ) throws UniversityScheduleException
+	static Universities getUniversities( final UniversityScheduleClient context ) throws UniversityScheduleException
 	{
 		Universities ret = null;
 
@@ -38,7 +38,7 @@ class UniversitiesClient
 				ret = UniversityScheduleClient.UNIVERSITIES_BRIDGE.createUniversities( root );
 			}
 		}
-		catch( IOException ex )
+		catch( final IOException ex )
 		{
 			throw new UniversityScheduleException( UniversityScheduleExceptionReason.UNKNOWN, ex );
 		}

@@ -16,7 +16,7 @@ public final class Coordinates
 	 * @param longitude the longitude
 	 * @param latitude the latitude
 	 */
-	Coordinates( float longitude, float latitude )
+	Coordinates( final float longitude, final float latitude )
 	{
 		this.mLongitude = longitude;
 		this.mLatitude = latitude;
@@ -27,7 +27,7 @@ public final class Coordinates
 	 *
 	 * @param coordinates the coordinates
 	 */
-	Coordinates( JSONObject coordinates )
+	Coordinates( final JSONObject coordinates )
 	{
 		this.mLongitude = ( float )coordinates.getDouble( "longitude" );
 		this.mLatitude = ( float )coordinates.getDouble( "latitude" );
