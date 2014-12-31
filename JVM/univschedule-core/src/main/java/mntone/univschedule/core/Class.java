@@ -2,12 +2,15 @@ package mntone.univschedule.core;
 
 import org.json.JSONObject;
 
+import java.util.Date;
+
 /**
  * Class
  */
 public final class Class
 {
 	private final String mId;
+	private final Date mDate;
 	private final Period mPeriod;
 	private final String mCampusName;
 	private final String mDepartment;
@@ -20,6 +23,7 @@ public final class Class
 	 * Initialize a new class.
 	 *
 	 * @param id         the id
+	 * @param date       the date
 	 * @param period     the period
 	 * @param campusName the campus
 	 * @param department the department
@@ -28,9 +32,10 @@ public final class Class
 	 * @param grade      the grade
 	 * @param note       the note
 	 */
-	Class( String id, Period period, String campusName, String department, String subject, String lecturer, String grade, String note )
+	Class( String id, Date date, Period period, String campusName, String department, String subject, String lecturer, String grade, String note )
 	{
 		this.mId = id;
+		this.mDate = date;
 		this.mPeriod = period;
 		this.mCampusName = campusName;
 		this.mDepartment = department;
@@ -48,6 +53,7 @@ public final class Class
 	Class( JSONObject klass )
 	{
 		this.mId = klass.getString( "hash" );
+		this.mDate = JsonUtil.convertStringToDateWithISO8601( klass.getString( "date" ) );
 		this.mPeriod = new Period( klass.getJSONObject( "period" ) );
 		this.mCampusName = klass.getString( "campus_name" );
 		this.mDepartment = klass.getString( "department" );
@@ -65,6 +71,16 @@ public final class Class
 	public String getId()
 	{
 		return this.mId;
+	}
+
+	/**
+	 * Get date.
+	 *
+	 * @return the date
+	 */
+	public Date getDate()
+	{
+		return this.mDate;
 	}
 
 	/**

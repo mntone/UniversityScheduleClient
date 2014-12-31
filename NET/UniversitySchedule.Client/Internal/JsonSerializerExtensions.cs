@@ -13,7 +13,7 @@ namespace Mntone.UniversitySchedule.Client.Internal
 			{
 				return ( T )new DataContractJsonSerializer( typeof( T ), new DataContractJsonSerializerSettings
 				{
-					DateTimeFormat = new DateTimeFormat( "O" )
+					DateTimeFormat = new DateTimeFormat( "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" )
 				} ).ReadObject( ms );
 			}
 			throw new UniversityScheduleException( UniversityScheduleExceptionReason.PARSE_FAILED );

@@ -59,6 +59,8 @@
 					Height="Auto" />
 				<RowDefinition
 					Height="Auto" />
+				<RowDefinition
+					Height="Auto" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition
@@ -68,45 +70,54 @@
 			</Grid.ColumnDefinitions>
 
 			<TextBlock
+				Text="日付: "
+				FontWeight="Bold" />
+			<TextBlock
+				Grid.Column="1"
+				Text="{Binding Date}" />
+
+			<TextBlock
+				Grid.Row="1"
 				Text="授業名: "
 				FontWeight="Bold" />
 			<TextBlock
+				Grid.Row="1"
 				Grid.Column="1"
 				Text="{Binding Subject}" />
 
 			<TextBlock
-				Grid.Row="1"
+				Grid.Row="2"
 				Text="キャンパス: "
 				FontWeight="Bold" />
 			<TextBlock
-				Grid.Row="1"
+				Grid.Row="2"
 				Grid.Column="1"
 				Text="{Binding CampusName}" />
 
 			<TextBlock
-				Grid.Row="2"
+				Grid.Row="3"
 				Text="講師: "
 				FontWeight="Bold" />
 			<TextBlock
-				Grid.Row="2"
+				Grid.Row="3"
 				Grid.Column="1"
 				Text="{Binding Lecturer}" />
 
 			<TextBlock
-				Grid.Row="3"
+				Grid.Row="4"
 				Text="学科: "
 				FontWeight="Bold" />
 			<TextBlock
-				Grid.Row="3"
+				Grid.Row="4"
 				Grid.Column="1"
 				Text="{Binding Department}"/>
 
 			<TextBlock
-				Grid.Row="4"
+				Grid.Row="5"
 				Text="説明: "
 				FontWeight="Bold" />
 			<TextBlock
-				Grid.Row="4"
+				Grid.Row="5"
 				Grid.Column="1"
 				Text="{Binding Note}"/>
 		</Grid>

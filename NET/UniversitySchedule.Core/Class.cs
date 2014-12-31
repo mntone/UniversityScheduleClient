@@ -9,12 +9,15 @@ namespace Mntone.UniversitySchedule.Core
 	[DataContract]
 	public sealed class Class
 	{
+		private static readonly string DATE_FORMAT = "yyyy'-'MM'-'dd";
+
 		private Class() { }
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
 		/// <param name="id">ID</param>
+		/// <param name="date">Date</param>
 		/// <param name="period"><see cref="Period"/></param>
 		/// <param name="campusName">Campus name</param>
 		/// <param name="department">Department</param>
@@ -22,9 +25,10 @@ namespace Mntone.UniversitySchedule.Core
 		/// <param name="lecturer">Lecturer</param>
 		/// <param name="grade">Grade</param>
 		/// <param name="note">Note</param>
-		internal Class( string id, Period period, string campusName, string department, string subject, string lecturer, string grade, string note )
+		internal Class( string id, DateTime date, Period period, string campusName, string department, string subject, string lecturer, string grade, string note )
 		{
 			this.ID = id;
+			this.Date = date;
 			this.Period = period;
 			this.CampusName = campusName;
 			this.Department = department;
@@ -39,6 +43,18 @@ namespace Mntone.UniversitySchedule.Core
 		/// </summary>
 		[DataMember( Name = "hash", IsRequired = true )]
 		public string ID { get; private set; }
+
+		/// <summary>
+		/// Date
+		/// </summary>
+		public DateTime Date { get; private set; }
+
+		[DataMember( Name = "date", IsRequired = true )]
+		private String DateImpl
+		{
+			get { return this.Date.ToString( DATE_FORMAT ); }
+			set { this.Date = DateTime.ParseExact( value, DATE_FORMAT, null ); }
+		}
 
 		/// <summary>
 		/// Period

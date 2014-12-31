@@ -36,19 +36,34 @@ class JsonUtil
 	}
 
 	private static final Date DATE_MIN = new Date( 0 );
+	private static final SimpleDateFormat ISO8601_DATETIME_FORMAT;
 	private static final SimpleDateFormat ISO8601_DATE_FORMAT;
 
 	static
 	{
-		ISO8601_DATE_FORMAT = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US );
+		ISO8601_DATETIME_FORMAT = new SimpleDateFormat( "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", Locale.US );
+		ISO8601_DATETIME_FORMAT.setTimeZone( TimeZone.getTimeZone( "UTC" ) );
+		ISO8601_DATE_FORMAT = new SimpleDateFormat( "yyyy'-'MM'-'dd", Locale.US );
 		ISO8601_DATE_FORMAT.setTimeZone( TimeZone.getTimeZone( "UTC" ) );
 	}
 
-	public static Date convertStringToDateWithISO8601( String dateTime )
+	public static Date convertStringToDateTimeWithISO8601( String dateTime )
 	{
 		try
 		{
-			return ISO8601_DATE_FORMAT.parse( dateTime );
+			return ISO8601_DATETIME_FORMAT.parse( dateTime );
+		}
+		catch( ParseException ex )
+		{
+		}
+		return DATE_MIN;
+	}
+
+	public static Date convertStringToDateWithISO8601( String date )
+	{
+		try
+		{
+			return ISO8601_DATE_FORMAT.parse( date );
 		}
 		catch( ParseException ex )
 		{
