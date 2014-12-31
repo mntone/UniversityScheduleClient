@@ -115,7 +115,7 @@ public final class UniversityScheduleClient
 	 *
 	 * @param value the last modified of university list.
 	 */
-	void setUniverstiesModifiedAt( Date value )
+	public void setUniverstiesModifiedAt( Date value )
 	{
 		this.mUniverstiesModifiedAt = value;
 	}
