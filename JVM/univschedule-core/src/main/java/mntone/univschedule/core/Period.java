@@ -7,8 +7,8 @@ import org.json.JSONObject;
  */
 public final class Period
 {
-	private final int mFrom;
-	private final int mTo;
+	private final byte mFrom;
+	private final byte mTo;
 
 	/**
 	 * Initialize a new period.
@@ -16,7 +16,7 @@ public final class Period
 	 * @param from the from
 	 * @param to   the to
 	 */
-	Period( int from, int to )
+	Period( byte from, byte to )
 	{
 		this.mFrom = from;
 		this.mTo = to;
@@ -29,8 +29,8 @@ public final class Period
 	 */
 	Period( JSONObject period )
 	{
-		this.mFrom = period.getInt( "from" );
-		this.mTo = period.getInt( "to" );
+		this.mFrom = ( byte )period.getInt( "from" );
+		this.mTo = ( byte )period.getInt( "to" );
 	}
 
 	/**
@@ -38,7 +38,7 @@ public final class Period
 	 *
 	 * @return the from
 	 */
-	public int getFrom()
+	public byte getFrom()
 	{
 		return this.mFrom;
 	}
@@ -48,7 +48,7 @@ public final class Period
 	 *
 	 * @return the to
 	 */
-	public int getTo()
+	public byte getTo()
 	{
 		return this.mTo;
 	}
