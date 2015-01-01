@@ -16,7 +16,7 @@ namespace Mntone.UniversitySchedule.Core
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		/// <param name="id">ID</param>
+		/// <param name="hash">Hash</param>
 		/// <param name="date">Date</param>
 		/// <param name="period"><see cref="Period"/></param>
 		/// <param name="campusName">Campus name</param>
@@ -25,9 +25,9 @@ namespace Mntone.UniversitySchedule.Core
 		/// <param name="lecturer">Lecturer</param>
 		/// <param name="grade">Grade</param>
 		/// <param name="note">Note</param>
-		internal Class( string id, DateTime date, Period period, string campusName, string department, string subject, string lecturer, string grade, string note )
+		internal Class( string hash, DateTime date, Period period, string campusName, string department, string subject, string lecturer, string grade, string note )
 		{
-			this.ID = id;
+			this.Hash = hash;
 			this.Date = date;
 			this.Period = period;
 			this.CampusName = campusName;
@@ -39,10 +39,10 @@ namespace Mntone.UniversitySchedule.Core
 		}
 
 		/// <summary>
-		/// ID
+		/// Hash
 		/// </summary>
 		[DataMember( Name = "hash", IsRequired = true )]
-		public string ID { get; private set; }
+		public string Hash { get; private set; }
 
 		/// <summary>
 		/// Date

@@ -7,14 +7,14 @@ import java.util.Date;
 /**
  * Classes
  */
-public final class ClassesResponse
+public final class ClassResponse
 {
 	/**
 	 * Factory
 	 */
-	public static class FriendClasses
+	public static class FriendClass
 	{
-		protected FriendClasses()
+		protected FriendClass()
 		{
 			if( !this.getClass().getName().startsWith( "mntone.univschedule.client." ) )
 			{
@@ -23,76 +23,62 @@ public final class ClassesResponse
 		}
 
 		/**
-		 * Create classes.
+		 * Create class.
 		 *
 		 * @param message    the message
 		 * @param university the university
-		 * @param classes    the array of the class
+		 * @param klass      the class
 		 * @param modifiedAt the last modified date time
-		 * @return the classes
+		 * @return the class
 		 */
-		public ClassesResponse createClassesResponse( String message, University university, Class[] classes, Date modifiedAt )
+		public ClassResponse createClassResponse( String message, University university, Class klass, Date modifiedAt )
 		{
-			return new ClassesResponse( message, university, classes, modifiedAt );
+			return new ClassResponse( message, university, klass, modifiedAt );
 		}
 
 		/**
-		 * Create classes.
+		 * Create class.
 		 *
 		 * @param root the json of the root
-		 * @return the classes
+		 * @return the class
 		 */
-		public ClassesResponse createClassesResponse( JSONObject root )
+		public ClassResponse createClassResponse( JSONObject root )
 		{
-			return new ClassesResponse( root );
+			return new ClassResponse( root );
 		}
 	}
 
 	private final String mMessage;
 	private final University mUniversity;
-	private final Class[] mClasses;
+	private final Class mClass;
 	private final Date mModifiedAt;
 
 	/**
-	 * Initialize a new Classes.
+	 * Initialize a new Class.
 	 *
 	 * @param message    the message
 	 * @param university the university
-	 * @param classes    the array of the class
+	 * @param klass      the class
 	 * @param modifiedAt the last modified date time
 	 */
-	ClassesResponse( final String message, final University university, final Class[] classes, final Date modifiedAt )
+	ClassResponse( final String message, final University university, final Class klass, final Date modifiedAt )
 	{
 		this.mMessage = message;
 		this.mUniversity = university;
-		this.mClasses = classes;
+		this.mClass = klass;
 		this.mModifiedAt = modifiedAt;
 	}
 
 	/**
-	 * Initialize a new Classes.
+	 * Initialize a new Class.
 	 *
 	 * @param root the json of the root
 	 */
-	ClassesResponse( final JSONObject root )
+	ClassResponse( final JSONObject root )
 	{
 		this.mMessage = root.getString( "message" );
 		this.mUniversity = new University( root.getJSONObject( "university" ) );
-		this.mClasses = JsonUtil.convertJsonArrayToArray(
-			root.getJSONArray( "items" ), new JsonUtil.InstanceFactory<Class>()
-			{
-				@Override
-				public Class createInstance( final JSONObject json )
-				{
-					return new Class( json );
-				}
-
-				@Override
-				public Class[] createArray( final int size )
-				{
-					return new Class[size];
-				}
-			} );
+		this.mClass = new Class( root.getJSONObject( "item" ) );
 		this.mModifiedAt = JsonUtil.convertStringToDateTimeWithISO8601( root.getString( "modified_at" ) );
 	}
 
@@ -117,13 +103,13 @@ public final class ClassesResponse
 	}
 
 	/**
-	 * Get classes.
+	 * Get class.
 	 *
-	 * @return the array of class
+	 * @return the class
 	 */
-	public Class[] getClasses()
+	public Class getKlass()
 	{
-		return this.mClasses;
+		return this.mClass;
 	}
 
 	/**

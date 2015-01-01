@@ -4,23 +4,25 @@ using System.Runtime.Serialization;
 namespace Mntone.UniversitySchedule.Core
 {
 	/// <summary>
-	/// Universities
+	/// Classes
 	/// </summary>
 	[DataContract]
-	public sealed class UniversitiesResponse
+	public sealed class ClassResponse
 	{
-		private UniversitiesResponse() { }
+		private ClassResponse() { }
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		/// <param name="message">Error message</param>
-		/// <param name="universities">Array of <see cref="University"/></param>
+		/// <param name="message">Message</param>
+		/// <param name="university"><see cref="University"/></param>
+		/// <param name="klass"><see cref="Class"/></param>
 		/// <param name="modifiedAt">Last modified</param>
-		internal UniversitiesResponse( string message, University[] universities, DateTime modifiedAt )
+		internal ClassResponse( string message, University university, Class klass, DateTime modifiedAt )
 		{
 			this.Message = message;
-			this.Universities = universities;
+			this.University = university;
+			this.Class = klass;
 			this.ModifiedAt = modifiedAt;
 		}
 
@@ -34,10 +36,16 @@ namespace Mntone.UniversitySchedule.Core
 		public string Message { get; private set; }
 
 		/// <summary>
-		/// Array of <see cref="University"/>
+		/// <see cref="University"/>
 		/// </summary>
-		[DataMember( Name = "items", IsRequired = true )]
-		public University[] Universities { get; private set; }
+		[DataMember( Name = "university", IsRequired = true )]
+		public University University { get; private set; }
+
+		/// <summary>
+		/// <see cref="Class"/>
+		/// </summary>
+		[DataMember( Name = "item", IsRequired = true )]
+		public Class Class { get; private set; }
 
 		/// <summary>
 		/// Last modified

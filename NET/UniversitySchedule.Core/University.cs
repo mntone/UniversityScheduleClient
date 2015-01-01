@@ -15,12 +15,14 @@ namespace Mntone.UniversitySchedule.Core
 		/// </summary>
 		/// <param name="id">ID</param>
 		/// <param name="screenName">Screen name</param>
+		/// <param name="message">Message</param>
 		/// <param name="names">Names</param>
 		/// <param name="campuses">Array of <see cref="Campus"/></param>
-		internal University( int id, string screenName, Names names, Campus[] campuses )
+		internal University( int id, string screenName, string message, Names names, Campus[] campuses )
 		{
 			this.ID = id;
 			this.ScreenName = screenName;
+			this.Message = Message;
 			this.Names = names;
 			this.Campuses = campuses;
 		}
@@ -36,6 +38,12 @@ namespace Mntone.UniversitySchedule.Core
 		/// </summary>
 		[DataMember( Name = "screen_name", IsRequired = true )]
 		public string ScreenName { get; private set; }
+
+		/// <summary>
+		/// Message
+		/// </summary>
+		[DataMember( Name = "message", IsRequired = true )]
+		public string Message { get; private set; }
 
 		/// <summary>
 		/// Names

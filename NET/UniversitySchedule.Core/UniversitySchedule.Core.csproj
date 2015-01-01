@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Campus.cs" />
     <Compile Include="Class.cs" />
+    <Compile Include="ClassResponse.cs" />
     <Compile Include="ClassesResponse.cs" />
     <Compile Include="Coordinates.cs" />
     <Compile Include="Names.cs" />

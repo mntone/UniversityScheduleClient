@@ -2,7 +2,11 @@ package mntone.univschedule.client;
 
 import java.util.Date;
 
-import mntone.univschedule.core.*;
+import mntone.univschedule.core.Class;
+import mntone.univschedule.core.ClassResponse;
+import mntone.univschedule.core.ClassesResponse;
+import mntone.univschedule.core.UniversitiesResponse;
+import mntone.univschedule.core.University;
 
 /**
  * Client for university class schedule
@@ -12,13 +16,20 @@ public final class UniversityScheduleClient
 	static final class UniversitiesBridge extends UniversitiesResponse.FriendUniversities
 	{
 	}
+
 	static final class ClassesBridge extends ClassesResponse.FriendClasses
 	{
 	}
+
+	static final class ClassBridge extends ClassResponse.FriendClass
+	{
+	}
+
 	static final UniversitiesBridge UNIVERSITIES_BRIDGE = new UniversitiesBridge();
 	static final ClassesBridge CLASSES_BRIDGE = new ClassesBridge();
+	static final ClassBridge CLASS_BRIDGE = new ClassBridge();
 
-	static final String X_UNIVS_LAST_MODIFIED = "X-UNIVS-LAST-MODIFIED";
+	static final String X_UNIVS_LAST_MODIFIED = "X-UCS-UNIVS-LAST-MODIFIED";
 	static final String DEFAULT_USER_AGENT = "UniversityScheduleClient for Java/0.9";
 
 	private final String mAccessKey;
@@ -68,6 +79,30 @@ public final class UniversityScheduleClient
 	public ClassesResponse getClasses( final String universityScreenName ) throws UniversityScheduleException
 	{
 		return ClassesClient.getClasses( this, universityScreenName );
+	}
+
+	/**
+	 * Get class.
+	 *
+	 * @param klass the university
+	 * @return the class
+	 * @throws UniversityScheduleException the UniversityClassScheduleException
+	 */
+	public ClassResponse getClass( final Class klass ) throws UniversityScheduleException
+	{
+		return this.getClass( klass.getHash() );
+	}
+
+	/**
+	 * Get class.
+	 *
+	 * @param classHash the screen name of university
+	 * @return the class
+	 * @throws UniversityScheduleException the UniversityClassScheduleException
+	 */
+	public ClassResponse getClass( final String classHash ) throws UniversityScheduleException
+	{
+		return ClassClient.getClass( this, classHash );
 	}
 
 	/**

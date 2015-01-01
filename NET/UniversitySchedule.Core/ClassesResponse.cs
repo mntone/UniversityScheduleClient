@@ -12,14 +12,16 @@ namespace Mntone.UniversitySchedule.Core
 		private ClassesResponse() { }
 
 		/// <summary>
-		/// longitude
+		/// Constructor
 		/// </summary>
 		/// <param name="message">Message</param>
+		/// <param name="university"><see cref="University"/></param>
 		/// <param name="classes">Array of <see cref="Class"/></param>
 		/// <param name="modifiedAt">Last modified</param>
-		internal ClassesResponse( string message, Class[] classes, DateTime modifiedAt )
+		internal ClassesResponse( string message, University university, Class[] classes, DateTime modifiedAt )
 		{
 			this.Message = message;
+			this.University = university;
 			this.Classes = classes;
 			this.ModifiedAt = modifiedAt;
 		}
@@ -34,6 +36,12 @@ namespace Mntone.UniversitySchedule.Core
 		public string Message { get; private set; }
 
 		/// <summary>
+		/// <see cref="University"/>
+		/// </summary>
+		[DataMember( Name = "university", IsRequired = true )]
+		public University University { get; private set; }
+
+		/// <summary>
 		/// Array of <see cref="Class"/>
 		/// </summary>
 		[DataMember( Name = "items", IsRequired = true )]
@@ -42,7 +50,7 @@ namespace Mntone.UniversitySchedule.Core
 		/// <summary>
 		/// Last modified
 		/// </summary>
-		[DataMember( Name = "last_update", IsRequired = true )]
+		[DataMember( Name = "modified_at", IsRequired = true )]
 		public DateTime ModifiedAt { get; private set; }
 	}
 }

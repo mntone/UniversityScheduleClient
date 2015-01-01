@@ -9,6 +9,7 @@ public final class University
 {
 	private final int mId;
 	private final String mScreenName;
+	private final String mMessage;
 	private final Names mNames;
 	private final Campus[] mCampuses;
 
@@ -17,13 +18,15 @@ public final class University
 	 *
 	 * @param id         the id
 	 * @param screenName the screen name
+	 * @param message    the message
 	 * @param names      the name
 	 * @param campuses   the campuses
 	 */
-	University( final int id, final String screenName, final Names names, final Campus[] campuses )
+	University( final int id, final String screenName, final String message, final Names names, final Campus[] campuses )
 	{
 		this.mId = id;
 		this.mScreenName = screenName;
+		this.mMessage = message;
 		this.mNames = names;
 		this.mCampuses = campuses;
 	}
@@ -37,6 +40,7 @@ public final class University
 	{
 		this.mId = university.getInt( "id" );
 		this.mScreenName = university.getString( "screen_name" );
+		this.mMessage = university.getString( "message" );
 		this.mNames = new Names( university.getJSONObject( "names" ) );
 		this.mCampuses = JsonUtil.convertJsonArrayToArray(
 			university.optJSONArray( "campuses" ), new JsonUtil.InstanceFactory<Campus>()
@@ -73,6 +77,16 @@ public final class University
 	public String getScreenName()
 	{
 		return this.mScreenName;
+	}
+
+	/**
+	 * Get message.
+	 *
+	 * @return the message
+	 */
+	public String getMessage()
+	{
+		return this.mMessage;
 	}
 
 	/**

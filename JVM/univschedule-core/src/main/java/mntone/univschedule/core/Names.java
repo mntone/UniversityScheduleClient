@@ -8,21 +8,21 @@ import org.json.JSONObject;
 public final class Names
 {
 	private final String mLocal;
-	private final String mEnglishUnitedStates;
-	private final String mRegion;
+	private final String mEnglish;
+	private final String mLanguage;
 
 	/**
 	 * Initialize a new Names.
 	 *
-	 * @param local               the local
-	 * @param englishUnitedStates the english united states
-	 * @param region              the region
+	 * @param local    the local
+	 * @param english  the english
+	 * @param language the language
 	 */
-	Names( final String local, final String englishUnitedStates, final String region )
+	Names( final String local, final String english, final String language )
 	{
 		this.mLocal = local;
-		this.mEnglishUnitedStates = englishUnitedStates;
-		this.mRegion = region;
+		this.mEnglish = english;
+		this.mLanguage = language;
 	}
 
 	/**
@@ -33,8 +33,8 @@ public final class Names
 	Names( final JSONObject names )
 	{
 		this.mLocal = names.getString( "local" );
-		this.mEnglishUnitedStates = names.getString( "en_us" );
-		this.mRegion = names.getString( "locale" );
+		this.mEnglish = names.getString( "english" );
+		this.mLanguage = names.getString( "language" );
 	}
 
 	/**
@@ -48,22 +48,22 @@ public final class Names
 	}
 
 	/**
-	 * Get name in English (US).
+	 * Get name in English.
 	 *
 	 * @return the name
 	 */
-	public String getEnglishUnitedStates()
+	public String getEnglish()
 	{
-		return this.mEnglishUnitedStates;
+		return this.mEnglish;
 	}
 
 	/**
-	 * Gets region.
+	 * Gets local language (ISO 639-1).
 	 *
-	 * @return the region
+	 * @return the local language
 	 */
-	public String getRegion()
+	public String getLanguage()
 	{
-		return this.mRegion;
+		return this.mLanguage;
 	}
 }

@@ -91,7 +91,7 @@ public final class UniversitiesResponse
 					return new University[size];
 				}
 			} );
-		this.mModifiedAt = JsonUtil.convertStringToDateTimeWithISO8601( root.getString( "last_update" ) );
+		this.mModifiedAt = JsonUtil.convertStringToDateTimeWithISO8601( root.getString( "modified_at" ) );
 	}
 
 	/**

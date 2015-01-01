@@ -14,13 +14,13 @@ namespace Mntone.UniversitySchedule.Core
 		/// Constructor
 		/// </summary>
 		/// <param name="local">Name in local language</param>
-		/// <param name="englishUnitedStates">Name in English (US)</param>
-		/// <param name="region">Region of local language</param>
-		public Names( string local, string englishUnitedStates, string region )
+		/// <param name="english">Name in English</param>
+		/// <param name="language">Local language</param>
+		public Names( string local, string english, string language )
 		{
 			this.Local = local;
-			this.EnglishUnitedStates = englishUnitedStates;
-			this.Region = region;
+			this.English = english;
+			this.Language = language;
 		}
 
 		/// <summary>
@@ -30,15 +30,15 @@ namespace Mntone.UniversitySchedule.Core
 		public string Local { get; private set; }
 
 		/// <summary>
-		/// Name in English (US)
+		/// Name in English
 		/// </summary>
-		[DataMember( Name = "en-us" )]
-		public string EnglishUnitedStates { get; private set; }
+		[DataMember( Name = "english" )]
+		public string English { get; private set; }
 
 		/// <summary>
-		/// Region of local language
+		/// Local language (ISO 639-1)
 		/// </summary>
-		[DataMember( Name = "locale" )]
-		public string Region { get; private set; }
+		[DataMember( Name = "language" )]
+		public string Language { get; private set; }
 	}
 }

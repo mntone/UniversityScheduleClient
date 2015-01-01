@@ -13,7 +13,7 @@ namespace Mntone.UniversitySchedule.Client
 	public sealed class UniversityScheduleClient
 		: IDisposable
 	{
-		internal const string XUnivsLastModified = "X-UNIVS-LAST-MODIFIED";
+		internal const string XUnivsLastModified = "X-UCS-UNIVS-LAST-MODIFIED";
 		internal const string DefaultUserAgent = "UniversityScheduleClient for .NET/0.9";
 
 		private HttpClientHandler _httpClientHandler = null;
@@ -61,6 +61,7 @@ namespace Mntone.UniversitySchedule.Client
 		/// <summary>
 		/// Get classes.
 		/// </summary>
+		/// <param name="university"><see cref="University"/></param>
 		/// <returns>The array of <see cref="Class"/></returns>
 		public Task<ClassesResponse> GetClassesAsync( University university )
 		{
@@ -70,11 +71,33 @@ namespace Mntone.UniversitySchedule.Client
 		/// <summary>
 		/// Get classes.
 		/// </summary>
+		/// <param name="universityScreenName">Screen name of university</param>
 		/// <returns>The array of <see cref="Class"/></returns>
 		public Task<ClassesResponse> GetClassesAsync( string universityScreenName )
 		{
 			var url = string.Format( UniversityScheduleUrls.CANCELLATIONS_URL, this.AccessKey, universityScreenName );
 			return new BaseClient<ClassesResponse>().GetAsync( this, url );
+		}
+
+		/// <summary>
+		/// Get class.
+		/// </summary>
+		/// <param name="klass"><see cref="Class"/></param>
+		/// <returns><see cref="ClassResponse"/></returns>
+		public Task<ClassResponse> GetClassAsync( Class klass )
+		{
+			return this.GetClassAsync( klass.Hash );
+		}
+
+		/// <summary>
+		/// Get class.
+		/// </summary>
+		/// <param name="classHash">Hash of class</param>
+		/// <returns><see cref="ClassResponse"/></returns>
+		public Task<ClassResponse> GetClassAsync( string classHash )
+		{
+			var url = string.Format( UniversityScheduleUrls.CANCELLATIONS_SHOW_URL, this.AccessKey, classHash );
+			return new BaseClient<ClassResponse>().GetAsync( this, url );
 		}
 
 		internal HttpClient GetClient()

@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public final class Class
 {
-	private final String mId;
+	private final String mHash;
 	private final Date mDate;
 	private final Period mPeriod;
 	private final String mCampusName;
@@ -22,7 +22,7 @@ public final class Class
 	/**
 	 * Initialize a new class.
 	 *
-	 * @param id         the id
+	 * @param hash       the hash
 	 * @param date       the date
 	 * @param period     the period
 	 * @param campusName the campus
@@ -33,7 +33,7 @@ public final class Class
 	 * @param note       the note
 	 */
 	Class(
-		final String id,
+		final String hash,
 		final Date date,
 		final Period period,
 		final String campusName,
@@ -43,7 +43,7 @@ public final class Class
 		final String grade,
 		final String note )
 	{
-		this.mId = id;
+		this.mHash = hash;
 		this.mDate = date;
 		this.mPeriod = period;
 		this.mCampusName = campusName;
@@ -61,7 +61,7 @@ public final class Class
 	 */
 	Class( final JSONObject klass )
 	{
-		this.mId = klass.getString( "hash" );
+		this.mHash = klass.getString( "hash" );
 		this.mDate = JsonUtil.convertStringToDateWithISO8601( klass.getString( "date" ) );
 		this.mPeriod = new Period( klass.getJSONObject( "period" ) );
 		this.mCampusName = klass.getString( "campus_name" );
@@ -73,13 +73,13 @@ public final class Class
 	}
 
 	/**
-	 * Get id.
+	 * Get hash.
 	 *
-	 * @return the id
+	 * @return the hash
 	 */
-	public String getId()
+	public String getHash()
 	{
-		return this.mId;
+		return this.mHash;
 	}
 
 	/**
