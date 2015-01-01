@@ -3,10 +3,9 @@ package mntone.univschedule.client;
 /**
  * UniversityClassScheduleException.
  */
-public final class UniversityScheduleException extends Exception
+public final class UniversityScheduleException extends RuntimeException
 {
 	private final UniversityScheduleExceptionReason mReason;
-	private final Exception mInnerException;
 	private final int mErrorCode;
 
 	/**
@@ -17,20 +16,19 @@ public final class UniversityScheduleException extends Exception
 	UniversityScheduleException( final UniversityScheduleExceptionReason reason )
 	{
 		this.mReason = reason;
-		this.mInnerException = null;
 		this.mErrorCode = -1;
 	}
 
 	/**
 	 * Initialize a new university class schedule exception.
 	 *
-	 * @param reason the reason
+	 * @param reason         the reason
 	 * @param innerException the inner exception
 	 */
 	UniversityScheduleException( final UniversityScheduleExceptionReason reason, final Exception innerException )
 	{
+		super( innerException );
 		this.mReason = reason;
-		this.mInnerException = innerException;
 		this.mErrorCode = -1;
 	}
 
@@ -42,7 +40,6 @@ public final class UniversityScheduleException extends Exception
 	UniversityScheduleException( final int errorCode )
 	{
 		this.mReason = UniversityScheduleExceptionReason.WEB_EXCEPTION;
-		this.mInnerException = null;
 		this.mErrorCode = errorCode;
 	}
 
@@ -54,16 +51,6 @@ public final class UniversityScheduleException extends Exception
 	public UniversityScheduleExceptionReason getReason()
 	{
 		return this.mReason;
-	}
-
-	/**
-	 * Get inner exception.
-	 *
-	 * @return the inner exception
-	 */
-	public Exception getInnerException()
-	{
-		return this.mInnerException;
 	}
 
 	/**
