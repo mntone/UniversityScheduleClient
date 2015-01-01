@@ -24,8 +24,8 @@ public final class UnivScheduleAppContext
 	private final AndroidDeferredManager _deferredManager;
 	private final UniversityScheduleClient _client;
 
-	private Universities _universities = null;
-	private HashMap<String, Classes> _classesMap = null;
+	private UniversitiesResponse _universities = null;
+	private HashMap<String, ClassesResponse> _classesMap = null;
 
 	public UnivScheduleAppContext()
 	{
@@ -35,7 +35,7 @@ public final class UnivScheduleAppContext
 		this._classesMap = new HashMap<>();
 	}
 
-	public Promise<Universities, Throwable, Void> getUniversitiesAsync()
+	public Promise<UniversitiesResponse, Throwable, Void> getUniversitiesAsync()
 	{
 		return this._deferredManager.when(
 			() ->
@@ -49,14 +49,14 @@ public final class UnivScheduleAppContext
 			} );
 	}
 
-	public Promise<Classes, Throwable, Void> getClassesAsync( String universityScreenName )
+	public Promise<ClassesResponse, Throwable, Void> getClassesAsync( final String universityScreenName )
 	{
 		return this._deferredManager.when(
 			() ->
 			{
 				if( !this._classesMap.containsKey( universityScreenName ) )
 				{
-					final Classes classes = this._client.getClasses( universityScreenName );
+					final ClassesResponse classes = this._client.getClasses( universityScreenName );
 					this._classesMap.put( universityScreenName, classes );
 					return classes;
 				}

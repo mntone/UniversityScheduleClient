@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import mntone.univschedule.core.Classes;
+import mntone.univschedule.core.ClassesResponse;
 
 class ClassesClient
 {
-	static Classes getClasses( final UniversityScheduleClient context, final String screenName ) throws UniversityScheduleException
+	static ClassesResponse getClasses( final UniversityScheduleClient context, final String screenName ) throws UniversityScheduleException
 	{
-		Classes classes = null;
+		ClassesResponse classes = null;
 
 		HttpURLConnection connection = null;
 		try
@@ -30,7 +30,7 @@ class ClassesClient
 				final String jsonText = HttpUtil.getString( connection );
 				final JSONTokener reader = new JSONTokener( jsonText );
 				final JSONObject root = new JSONObject( reader );
-				classes = UniversityScheduleClient.CLASSES_BRIDGE.createClasses( root );
+				classes = UniversityScheduleClient.CLASSES_BRIDGE.createClassesResponse( root );
 			}
 			else if( statusCode == HttpURLConnection.HTTP_NOT_MODIFIED )
 			{

@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import mntone.univschedule.core.Universities;
+import mntone.univschedule.core.UniversitiesResponse;
 
 class UniversitiesClient
 {
-	static Universities getUniversities( final UniversityScheduleClient context ) throws UniversityScheduleException
+	static UniversitiesResponse getUniversities( final UniversityScheduleClient context ) throws UniversityScheduleException
 	{
-		Universities ret = null;
+		UniversitiesResponse ret = null;
 
 		HttpURLConnection connection = null;
 		try
@@ -35,7 +35,7 @@ class UniversitiesClient
 				final String jsonText = HttpUtil.getString( connection );
 				final JSONTokener reader = new JSONTokener( jsonText );
 				final JSONObject root = new JSONObject( reader );
-				ret = UniversityScheduleClient.UNIVERSITIES_BRIDGE.createUniversities( root );
+				ret = UniversityScheduleClient.UNIVERSITIES_BRIDGE.createUniversitiesResponse( root );
 			}
 		}
 		catch( final IOException ex )

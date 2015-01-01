@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Classes
  */
-public final class Classes
+public final class ClassesResponse
 {
 	/**
 	 * Factory
@@ -31,9 +31,9 @@ public final class Classes
 		 * @param modifiedAt the last modified date time
 		 * @return the classes
 		 */
-		public Classes createClasses( String message, University university, Class[] classes, Date modifiedAt )
+		public ClassesResponse createClassesResponse( String message, University university, Class[] classes, Date modifiedAt )
 		{
-			return new Classes( message, university, classes, modifiedAt );
+			return new ClassesResponse( message, university, classes, modifiedAt );
 		}
 
 		/**
@@ -42,9 +42,9 @@ public final class Classes
 		 * @param root the json of the root
 		 * @return the classes
 		 */
-		public Classes createClasses( JSONObject root )
+		public ClassesResponse createClassesResponse( JSONObject root )
 		{
-			return new Classes( root );
+			return new ClassesResponse( root );
 		}
 	}
 
@@ -61,7 +61,7 @@ public final class Classes
 	 * @param classes    the array of the class
 	 * @param modifiedAt the last modified date time
 	 */
-	Classes( final String message, final University university, final Class[] classes, final Date modifiedAt )
+	ClassesResponse( final String message, final University university, final Class[] classes, final Date modifiedAt )
 	{
 		this.mMessage = message;
 		this.mUniversity = university;
@@ -74,7 +74,7 @@ public final class Classes
 	 *
 	 * @param root the json of the root
 	 */
-	Classes( final JSONObject root )
+	ClassesResponse( final JSONObject root )
 	{
 		this.mMessage = root.getString( "message" );
 		this.mUniversity = new University( root.getJSONObject( "university" ) );

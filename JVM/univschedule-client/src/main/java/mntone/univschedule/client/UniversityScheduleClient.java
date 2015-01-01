@@ -9,10 +9,10 @@ import mntone.univschedule.core.*;
  */
 public final class UniversityScheduleClient
 {
-	static final class UniversitiesBridge extends Universities.FriendUniversities
+	static final class UniversitiesBridge extends UniversitiesResponse.FriendUniversities
 	{
 	}
-	static final class ClassesBridge extends Classes.FriendClasses
+	static final class ClassesBridge extends ClassesResponse.FriendClasses
 	{
 	}
 	static final UniversitiesBridge UNIVERSITIES_BRIDGE = new UniversitiesBridge();
@@ -41,7 +41,7 @@ public final class UniversityScheduleClient
 	 * @return the array of University
 	 * @throws UniversityScheduleException the UniversityClassScheduleException
 	 */
-	public Universities getUniversities() throws UniversityScheduleException
+	public UniversitiesResponse getUniversities() throws UniversityScheduleException
 	{
 		return UniversitiesClient.getUniversities( this );
 	}
@@ -53,7 +53,7 @@ public final class UniversityScheduleClient
 	 * @return the classes
 	 * @throws UniversityScheduleException the UniversityClassScheduleException
 	 */
-	public Classes getClasses( final University university ) throws UniversityScheduleException
+	public ClassesResponse getClasses( final University university ) throws UniversityScheduleException
 	{
 		return this.getClasses( university.getScreenName() );
 	}
@@ -65,7 +65,7 @@ public final class UniversityScheduleClient
 	 * @return the classes
 	 * @throws UniversityScheduleException the UniversityClassScheduleException
 	 */
-	public Classes getClasses( final String universityScreenName ) throws UniversityScheduleException
+	public ClassesResponse getClasses( final String universityScreenName ) throws UniversityScheduleException
 	{
 		return ClassesClient.getClasses( this, universityScreenName );
 	}

@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Universities
  */
-public final class Universities
+public final class UniversitiesResponse
 {
 	/**
 	 * Factory
@@ -15,7 +15,7 @@ public final class Universities
 	public static class FriendUniversities
 	{
 		/**
-		 * Instantiates a new Friend universities.
+		 * Initialize a new FriendUniversities.
 		 */
 		protected FriendUniversities()
 		{
@@ -33,9 +33,9 @@ public final class Universities
 		 * @param modifiedAt the last modified date time
 		 * @return the universities
 		 */
-		public Universities createUniversities( String message, University[] universities, Date modifiedAt )
+		public UniversitiesResponse createUniversitiesResponse( String message, University[] universities, Date modifiedAt )
 		{
-			return new Universities( message, universities, modifiedAt );
+			return new UniversitiesResponse( message, universities, modifiedAt );
 		}
 
 		/**
@@ -44,9 +44,9 @@ public final class Universities
 		 * @param root the json of the root
 		 * @return the universities
 		 */
-		public Universities createUniversities( JSONObject root )
+		public UniversitiesResponse createUniversitiesResponse( JSONObject root )
 		{
-			return new Universities( root );
+			return new UniversitiesResponse( root );
 		}
 	}
 
@@ -61,7 +61,7 @@ public final class Universities
 	 * @param universities the array of the university
 	 * @param modifiedAt the last modified date time
 	 */
-	Universities( final String message, final University[] universities, final Date modifiedAt )
+	UniversitiesResponse( final String message, final University[] universities, final Date modifiedAt )
 	{
 		this.mMessage = message;
 		this.mUniversities = universities;
@@ -73,7 +73,7 @@ public final class Universities
 	 *
 	 * @param root the json of the root
 	 */
-	Universities( final JSONObject root )
+	UniversitiesResponse( final JSONObject root )
 	{
 		this.mMessage = root.getString( "message" );
 		this.mUniversities = JsonUtil.convertJsonArrayToArray(
