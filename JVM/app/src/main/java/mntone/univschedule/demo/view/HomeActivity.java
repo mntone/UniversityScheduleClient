@@ -47,7 +47,7 @@ public class HomeActivity extends Activity
 					final Class data = ( Class )listView.getItemAtPosition( pos );
 					final Intent newIntent = new Intent( getApplication(), DetailActivity.class );
 					newIntent.putExtra( KEY_UNIVERSITY_SCREEN_NAME, usn );
-					newIntent.putExtra( KEY_CLASS_HASH, data.getId() );
+					newIntent.putExtra( KEY_CLASS_HASH, data.getHash() );
 					startActivity( newIntent );
 				} );
 

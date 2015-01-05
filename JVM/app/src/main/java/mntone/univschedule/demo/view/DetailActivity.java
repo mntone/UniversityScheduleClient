@@ -35,7 +35,7 @@ public class DetailActivity extends Activity
 				Class data = null;
 				for( Class c : result.getClasses() )
 				{
-					if( c.getId().compareTo( cid ) == 0 )
+					if( c.getHash().compareTo( cid ) == 0 )
 					{
 						data = c;
 						break;
