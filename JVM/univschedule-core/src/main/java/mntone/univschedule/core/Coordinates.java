@@ -7,19 +7,19 @@ import org.json.JSONObject;
  */
 public final class Coordinates
 {
-	private final float mLongitude;
 	private final float mLatitude;
+	private final float mLongitude;
 
 	/**
 	 * Initialize a new Coordinates.
 	 *
-	 * @param longitude the longitude
 	 * @param latitude the latitude
+	 * @param longitude the longitude
 	 */
-	Coordinates( final float longitude, final float latitude )
+	Coordinates( final float latitude, final float longitude )
 	{
-		this.mLongitude = longitude;
 		this.mLatitude = latitude;
+		this.mLongitude = longitude;
 	}
 
 	/**
@@ -29,18 +29,8 @@ public final class Coordinates
 	 */
 	Coordinates( final JSONObject coordinates )
 	{
-		this.mLongitude = ( float )coordinates.getDouble( "longitude" );
 		this.mLatitude = ( float )coordinates.getDouble( "latitude" );
-	}
-
-	/**
-	 * Get longitude.
-	 *
-	 * @return the longitude
-	 */
-	public float getLongitude()
-	{
-		return this.mLongitude;
+		this.mLongitude = ( float )coordinates.getDouble( "longitude" );
 	}
 
 	/**
@@ -51,5 +41,15 @@ public final class Coordinates
 	public float getLatitude()
 	{
 		return this.mLatitude;
+	}
+
+	/**
+	 * Get longitude.
+	 *
+	 * @return the longitude
+	 */
+	public float getLongitude()
+	{
+		return this.mLongitude;
 	}
 }
