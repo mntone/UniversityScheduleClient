@@ -1,4 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Runtime.Serialization;
 
 namespace Mntone.UniversitySchedule.Core
 {
@@ -56,5 +59,17 @@ namespace Mntone.UniversitySchedule.Core
 		/// </summary>
 		[DataMember( Name = "campuses" )]
 		public Campus[] Campuses { get; private set; }
+
+		/// <summary>
+		/// Timetable
+		/// </summary>
+		public IReadOnlyDictionary<int, PeriodInfo> Timetable
+		{
+			get { return new ReadOnlyDictionary<int, PeriodInfo>( this.TimetableImpl ); }
+		}
+
+		[DataMember( Name = "timetable", IsRequired = true )]
+		[DebuggerBrowsable( DebuggerBrowsableState.Never )]
+		private IDictionary<int, PeriodInfo> TimetableImpl { get; set; }
 	}
 }
