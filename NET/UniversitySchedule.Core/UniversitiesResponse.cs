@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 
 namespace Mntone.UniversitySchedule.Core
@@ -37,6 +38,7 @@ namespace Mntone.UniversitySchedule.Core
 		/// Array of <see cref="University"/>
 		/// </summary>
 		[DataMember( Name = "items", IsRequired = true )]
+		[DebuggerBrowsable( DebuggerBrowsableState.RootHidden )]
 		public University[] Universities { get; private set; }
 
 		/// <summary>

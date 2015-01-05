@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 
 namespace Mntone.UniversitySchedule.Core
@@ -50,6 +51,7 @@ namespace Mntone.UniversitySchedule.Core
 		public DateTime Date { get; private set; }
 
 		[DataMember( Name = "date", IsRequired = true )]
+		[DebuggerBrowsable( DebuggerBrowsableState.Never )]
 		private String DateImpl
 		{
 			get { return this.Date.ToString( DATE_FORMAT ); }

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics;
+using System.Runtime.Serialization;
 
 namespace Mntone.UniversitySchedule.Core
 {
@@ -6,6 +7,7 @@ namespace Mntone.UniversitySchedule.Core
 	/// Period
 	/// </summary>
 	[DataContract]
+	[DebuggerDisplay( "{From}-{To}" )]
 	public sealed class Period
 	{
 		private Period() { }
