@@ -9,7 +9,7 @@ namespace Mntone.UniversitySchedule.Core
 	[DataContract]
 	public sealed class Class
 	{
-		private static readonly string DATE_FORMAT = "yyyy'-'MM'-'dd";
+		private const string DATE_FORMAT = "yyyy'-'MM'-'dd";
 
 		private Class() { }
 
