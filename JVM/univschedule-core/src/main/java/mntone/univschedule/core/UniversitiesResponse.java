@@ -77,7 +77,7 @@ public final class UniversitiesResponse
 	{
 		this.mMessage = root.getString( "message" );
 		this.mUniversities = JsonUtil.convertJsonArrayToArray(
-			root.getJSONArray( "items" ), new JsonUtil.InstanceFactory<University>()
+			root.getJSONArray( "items" ), new JsonUtil.ArrayInstanceFactory<University>()
 			{
 				@Override
 				public University createInstance( final JSONObject json )

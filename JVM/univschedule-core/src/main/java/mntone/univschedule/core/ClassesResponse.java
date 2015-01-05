@@ -79,7 +79,7 @@ public final class ClassesResponse
 		this.mMessage = root.getString( "message" );
 		this.mUniversity = new University( root.getJSONObject( "university" ) );
 		this.mClasses = JsonUtil.convertJsonArrayToArray(
-			root.getJSONArray( "items" ), new JsonUtil.InstanceFactory<Class>()
+			root.getJSONArray( "items" ), new JsonUtil.ArrayInstanceFactory<Class>()
 			{
 				@Override
 				public Class createInstance( final JSONObject json )

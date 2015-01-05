@@ -2,6 +2,8 @@ package mntone.univschedule.core;
 
 import org.json.JSONObject;
 
+import java.util.Map;
+
 /**
  * University
  */
@@ -12,6 +14,7 @@ public final class University
 	private final String mMessage;
 	private final Names mNames;
 	private final Campus[] mCampuses;
+	private final Map<Integer, PeriodInfo> mTimetable;
 
 	/**
 	 * Initialize a new University.
@@ -21,14 +24,16 @@ public final class University
 	 * @param message    the message
 	 * @param names      the name
 	 * @param campuses   the campuses
+	 * @param timetable  the timetable
 	 */
-	University( final int id, final String screenName, final String message, final Names names, final Campus[] campuses )
+	University( final int id, final String screenName, final String message, final Names names, final Campus[] campuses, final Map<Integer, PeriodInfo> timetable )
 	{
 		this.mId = id;
 		this.mScreenName = screenName;
 		this.mMessage = message;
 		this.mNames = names;
 		this.mCampuses = campuses;
+		this.mTimetable = timetable;
 	}
 
 	/**
@@ -43,7 +48,7 @@ public final class University
 		this.mMessage = university.getString( "message" );
 		this.mNames = new Names( university.getJSONObject( "names" ) );
 		this.mCampuses = JsonUtil.convertJsonArrayToArray(
-			university.optJSONArray( "campuses" ), new JsonUtil.InstanceFactory<Campus>()
+			university.optJSONArray( "campuses" ), new JsonUtil.ArrayInstanceFactory<Campus>()
 			{
 				@Override
 				public Campus createInstance( final JSONObject json )
@@ -55,6 +60,15 @@ public final class University
 				public Campus[] createArray( final int size )
 				{
 					return new Campus[size];
+				}
+			} );
+		this.mTimetable = JsonUtil.convertJsonObjectToHashMap(
+			university.getJSONObject( "timetable" ), new JsonUtil.BasicInstanceFactory<PeriodInfo>()
+			{
+				@Override
+				public PeriodInfo createInstance( final JSONObject json )
+				{
+					return new PeriodInfo( json );
 				}
 			} );
 	}
@@ -107,5 +121,15 @@ public final class University
 	public Campus[] getCampuses()
 	{
 		return this.mCampuses;
+	}
+
+	/**
+	 * Get timetable.
+	 *
+	 * @return the timetable
+	 */
+	public Map<Integer, PeriodInfo> getTimetable()
+	{
+		return this.mTimetable;
 	}
 }
