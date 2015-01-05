@@ -8,6 +8,7 @@ namespace Mntone.UniversitySchedule.Core
 	/// PeriodInfo
 	/// </summary>
 	[DataContract]
+	[DebuggerDisplay( "{StringView()}" )]
 	public sealed class PeriodInfo
 	{
 		private const string TIME_FORMAT = "HH':'mmzz";
@@ -49,6 +50,11 @@ namespace Mntone.UniversitySchedule.Core
 		{
 			get { return this.To.ToString( TIME_FORMAT ); }
 			set { this.To = DateTime.ParseExact( value, TIME_FORMAT, null ); }
+		}
+
+		private string StringView()
+		{
+			return string.Format( "{0}-{1}", this.FromImpl, this.ToImpl );
 		}
 	}
 }
