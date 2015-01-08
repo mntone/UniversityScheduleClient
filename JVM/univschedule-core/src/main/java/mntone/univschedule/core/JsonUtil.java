@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -71,8 +72,10 @@ class JsonUtil
 		}
 
 		final HashMap<TKey, TValue> retHashMap = new HashMap<TKey, TValue>();
-		for( final String key : obj.keySet() )
+		final Iterator<String> itr = obj.keys();
+		while( itr.hasNext() )
 		{
+			final String key = itr.next();
 			final TKey newKey = factory.createKeyInstance( key );
 			final TValue newValue = factory.createInstance( obj.getJSONObject( key ) );
 			retHashMap.put( newKey, newValue );
