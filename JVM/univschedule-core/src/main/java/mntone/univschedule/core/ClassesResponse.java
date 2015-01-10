@@ -76,7 +76,7 @@ public final class ClassesResponse
 	 */
 	ClassesResponse( final JSONObject root )
 	{
-		this.mMessage = root.getString( "message" );
+		this.mMessage = JsonUtil.getString( root, "message" );
 		this.mUniversity = new University( root.getJSONObject( "university" ) );
 		this.mClasses = JsonUtil.convertJsonArrayToArray(
 			root.getJSONArray( "items" ), new JsonUtil.ArrayInstanceFactory<Class>()

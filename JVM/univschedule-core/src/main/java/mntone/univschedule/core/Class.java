@@ -12,12 +12,12 @@ public final class Class
 	private final String mHash;
 	private final Date mDate;
 	private final Period mPeriod;
+	private final String mSubject;
 	private final String mCampusName;
 	private final String mDepartment;
-	private final String mSubject;
 	private final String mLecturer;
 	private final String mGrade;
-	private final String mNote;
+	private final String mMessage;
 
 	/**
 	 * Initialize a new class.
@@ -25,33 +25,33 @@ public final class Class
 	 * @param hash       the hash
 	 * @param date       the date
 	 * @param period     the period
+	 * @param subject    the subject
 	 * @param campusName the campus
 	 * @param department the department
-	 * @param subject    the subject
 	 * @param lecturer   the lecture
 	 * @param grade      the grade
-	 * @param note       the note
+	 * @param message    the message
 	 */
 	Class(
 		final String hash,
 		final Date date,
 		final Period period,
+		final String subject,
 		final String campusName,
 		final String department,
-		final String subject,
 		final String lecturer,
 		final String grade,
-		final String note )
+		final String message )
 	{
 		this.mHash = hash;
 		this.mDate = date;
 		this.mPeriod = period;
+		this.mSubject = subject;
 		this.mCampusName = campusName;
 		this.mDepartment = department;
-		this.mSubject = subject;
 		this.mLecturer = lecturer;
 		this.mGrade = grade;
-		this.mNote = note;
+		this.mMessage = message;
 	}
 
 	/**
@@ -64,12 +64,12 @@ public final class Class
 		this.mHash = klass.getString( "hash" );
 		this.mDate = JsonUtil.convertStringToDateWithISO8601( klass.getString( "date" ) );
 		this.mPeriod = new Period( klass.getJSONObject( "period" ) );
-		this.mCampusName = klass.getString( "campus_name" );
-		this.mDepartment = klass.getString( "department" );
 		this.mSubject = klass.getString( "subject" );
-		this.mLecturer = klass.getString( "lecturer" );
-		this.mGrade = klass.getString( "grade" );
-		this.mNote = klass.getString( "note" );
+		this.mCampusName = JsonUtil.getString( klass, "campus_name" );
+		this.mDepartment = JsonUtil.getString( klass, "department" );
+		this.mLecturer = JsonUtil.getString( klass, "lecturer" );
+		this.mGrade = JsonUtil.getString( klass, "grade" );
+		this.mMessage = JsonUtil.getString( klass, "note" );
 	}
 
 	/**
@@ -103,6 +103,16 @@ public final class Class
 	}
 
 	/**
+	 * Get subject.
+	 *
+	 * @return the subject
+	 */
+	public String getSubject()
+	{
+		return this.mSubject;
+	}
+
+	/**
 	 * Get campus name.
 	 *
 	 * @return the campusName
@@ -120,16 +130,6 @@ public final class Class
 	public String getDepartment()
 	{
 		return this.mDepartment;
-	}
-
-	/**
-	 * Get subject.
-	 *
-	 * @return the subject
-	 */
-	public String getSubject()
-	{
-		return this.mSubject;
 	}
 
 	/**
@@ -153,12 +153,12 @@ public final class Class
 	}
 
 	/**
-	 * Get note.
+	 * Get message.
 	 *
-	 * @return the note
+	 * @return the message
 	 */
-	public String getNote()
+	public String getMessage()
 	{
-		return this.mNote;
+		return this.mMessage;
 	}
 }

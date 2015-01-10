@@ -132,4 +132,9 @@ class JsonUtil
 		}
 		return DATE_MIN;
 	}
+
+	public static String getString( final JSONObject json, final String key )
+	{
+		return !json.isNull( key ) ? json.getString( key ) : null;
+	}
 }

@@ -44,8 +44,8 @@ public final class University
 	University( final JSONObject university )
 	{
 		this.mId = university.getInt( "id" );
-		this.mScreenName = university.getString( "screen_name" );
-		this.mMessage = university.getString( "message" );
+		this.mScreenName = JsonUtil.getString( university, "screen_name" );
+		this.mMessage = JsonUtil.getString( university, "message" );
 		this.mNames = new Names( university.getJSONObject( "names" ) );
 		this.mCampuses = JsonUtil.convertJsonArrayToArray(
 			university.optJSONArray( "campuses" ), new JsonUtil.ArrayInstanceFactory<Campus>()

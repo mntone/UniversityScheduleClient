@@ -76,7 +76,7 @@ public final class ClassResponse
 	 */
 	ClassResponse( final JSONObject root )
 	{
-		this.mMessage = root.getString( "message" );
+		this.mMessage = JsonUtil.getString( root, "message" );
 		this.mUniversity = new University( root.getJSONObject( "university" ) );
 		this.mClass = new Class( root.getJSONObject( "item" ) );
 		this.mModifiedAt = JsonUtil.convertStringToDateTimeWithISO8601( root.getString( "modified_at" ) );
