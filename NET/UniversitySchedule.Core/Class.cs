@@ -25,8 +25,8 @@ namespace Mntone.UniversitySchedule.Core
 		/// <param name="subject">Subject</param>
 		/// <param name="lecturer">Lecturer</param>
 		/// <param name="grade">Grade</param>
-		/// <param name="note">Note</param>
-		internal Class( string hash, DateTime date, Period period, string campusName, string department, string subject, string lecturer, string grade, string note )
+		/// <param name="message">Message</param>
+		internal Class( string hash, DateTime date, Period period, string campusName, string department, string subject, string lecturer, string grade, string message )
 		{
 			this.Hash = hash;
 			this.Date = date;
@@ -36,7 +36,7 @@ namespace Mntone.UniversitySchedule.Core
 			this.Subject = subject;
 			this.Lecturer = lecturer;
 			this.Grade = grade;
-			this.Note = note;
+			this.Message = message;
 		}
 
 		/// <summary>
@@ -98,6 +98,6 @@ namespace Mntone.UniversitySchedule.Core
 		/// Note message
 		/// </summary>
 		[DataMember( Name = "note" )]
-		public string Note { get; private set; }
+		public string Message { get; private set; }
 	}
 }
