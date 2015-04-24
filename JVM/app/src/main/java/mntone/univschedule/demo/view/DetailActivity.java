@@ -53,7 +53,7 @@ public class DetailActivity extends Activity
 					campusTextView.setText( data.getCampusName() );
 
 					final TextView noteTextView = ( TextView )this.findViewById( R.id.note );
-					noteTextView.setText( data.getNote() );
+					noteTextView.setText( data.getMessage() );
 				}
 			} );
 	}
